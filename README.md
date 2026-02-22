@@ -2,6 +2,9 @@
 
 Landing page desenvolvida para a clínica **CS Odontologia Especializada** como parte da disciplina **Projeto Integrador III**.
 
+<img width="1899" height="927" alt="image" src="https://github.com/user-attachments/assets/77e78064-63d4-4826-a459-540445a71e10" />
+
+
 ## Sobre o projeto
 
 Este site foi criado por mim e meus colegas de sala na faculdade, com foco em contribuir para o comércio local por meio de uma presença digital profissional para a clínica.
