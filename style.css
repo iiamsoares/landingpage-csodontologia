@@ -1,0 +1,837 @@
+/* =========================================
+   RESET E VARIÁVEIS GERAIS
+   ========================================= */
+:root {
+    /* Paleta de Cores Refinada */
+    --gold-primary: #FFCC00;
+    --gold-hover: #e6b800;
+    --gold-dark: #b38f00;
+    
+    --black-primary: #1a1a1a;
+    --black-secondary: #0c0a02;
+    
+    --bg-light: #F4F3EF; /* Um off-white mais elegante */
+    --white: #ffffff;
+    
+    --text-dark: #333333;
+    --text-light: #f9f9f9;
+    --text-grey: #666666;
+
+    /* Tipografia */
+    --font-heading: 'Playfair Display', serif; /* Títulos elegantes */
+    --font-body: 'Lato', sans-serif; /* Texto limpo */
+
+    /* Efeitos */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra de "Luxo" */
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+}
+
+/* Utilitários */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--black-primary);
+}
+
+.highlight-text {
+    color: var(--gold-primary);
+    font-style: italic;
+}
+
+/* =========================================
+   HEADER E NAVBAR
+   ========================================= */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition);
+    background: transparent;
+    height: 120px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo img {
+    height: 250px;
+    width: auto;
+    transition: all 0.4s ease;
+    padding-top: 10px;
+}
+
+/* --- ESTILO AO ROLAR (SCROLL) --- */
+.main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 10px 50px;
+    height: 80px;
+    backdrop-filter: blur(10px);
+}
+
+.main-header.scrolled .logo img {
+    height: 100px; /* Ajustei para um tamanho proporcional ao header de 80px */
+    padding-top: 0;
+}
+
+.main-header.scrolled .main-nav a {
+    color: var(--black-primary);
+}
+
+.main-header.scrolled .contact-btn {
+    border-color: var(--black-primary);
+    color: var(--black-primary);
+}
+
+.main-header.scrolled .contact-btn:hover {
+    background-color: var(--black-primary);
+    color: var(--white);
+}
+
+/* Navegação Desktop */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 400;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: var(--transition);
+}
+
+/* Efeito de underline animado no menu */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--gold-primary);
+    transition: var(--transition);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.contact-btn {
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid var(--gold-primary);
+    color: var(--white);
+    background: transparent;
+    transition: var(--transition);
+}
+
+.contact-btn:hover {
+    background-color: var(--gold-primary);
+    color: var(--black-secondary);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--gold-primary);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background: url('imagens/dentista-completo-com-paciente.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    color: var(--white);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.cta-btn {
+    display: inline-block;
+    background-color: var(--gold-primary);
+    color: var(--black-secondary);
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+}
+
+.cta-btn:hover {
+    background-color: var(--gold-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.6);
+}
+
+/* Animações de entrada */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   SEÇÃO ESPECIALIDADES
+   ========================================= */
+.specialists-section {
+    padding: 100px 0;
+    background-color: var(--bg-light);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.subtitle {
+    display: block;
+    color: var(--gold-dark);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.section-header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.separator {
+    width: 60px;
+    height: 3px;
+    background-color: var(--gold-primary);
+    margin: 0 auto;
+}
+
+.specialty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.specialty-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.specialty-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.img-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.specialty-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.specialty-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: var(--text-grey);
+    line-height: 1.6;
+}
+
+/* =========================================
+   DEPOIMENTOS (DARK MODE)
+   ========================================= */
+.testimonials-section {
+    padding: 100px 0;
+    background-color: var(--black-secondary);
+    color: var(--white);
+}
+
+.section-header.light h2 {
+    color: var(--white);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.testimonial-card {
+    background: #222;
+    padding: 40px 30px;
+    border-radius: 4px;
+    border-top: 4px solid var(--gold-primary);
+    position: relative;
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    background: #2a2a2a;
+    transform: translateY(-5px);
+}
+
+.quote-icon {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--gold-primary);
+    line-height: 0;
+    margin-bottom: 30px;
+    opacity: 0.5;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold-primary);
+}
+
+.testimonial-author h4 {
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.testimonial-author span {
+    font-size: 0.8rem;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+}
+
+.testimonials-footer h3 {
+    color: var(--white);
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* =========================================
+   NOSSO ESPAÇO
+   ========================================= */
+.nosso-espaco {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+/* Carrossel Estilizado */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.carousel-viewport {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--black-primary);
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: var(--gold-primary);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background-color: var(--gold-primary);
+    transform: scale(1.2);
+}
+
+/* Mapa */
+.map-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Layout Desktop Padrão */
+.location-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.carousel-column, .map-column {
+    flex: 1;
+    height: 400px;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+    background-color: var(--black-secondary);
+    color: #aaa;
+    padding: 80px 0 30px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--gold-primary);
+}
+
+.info-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Estilo do botão do WhatsApp no Footer */
+.whatsapp-butao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Espaço entre ícone e texto */
+    /* Mantenha suas cores de fundo originais abaixo */
+    background: #36ff67; /* ou var(--primary-color) se preferir */
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.whatsapp-butao:hover {
+    background: #28cc53;
+    /* Sem animação de escala na imagem, conforme solicitado */
+}
+
+.footer-icon {
+    width: 20px;  /* Tamanho discreto e elegante */
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* MÁGICA: Transforma a imagem preta em BRANCA */
+    flex-shrink: 0; /* Garante que o ícone não "amasse" */
+    margin-top: 4px; /* Ajuste fino para alinhar com o topo do texto */
+}
+
+/* Garante que a linha fique alinhada corretamente */
+.info-row {
+    display: flex;
+    gap: 15px; /* Espaço entre ícone e texto */
+    margin-bottom: 20px;
+    align-items: flex-start; /* Alinha no topo (útil para o endereço que tem 2 linhas) */
+}
+
+.info-row p {
+    margin: 0;
+    color: #ccc; /* Cor do texto cinza claro */
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Ajuste para alinhar o item de informação */
+.info-item {
+    display: flex;
+    align-items: flex-start; /* Alinha no topo caso o texto quebre linha */
+    gap: 5px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a img {
+    width: 30px;
+    transition: var(--transition);
+    filter: invert(1);
+}
+
+.social-links a:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px var(--gold-primary));
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 30px;
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE - LOGO GIGANTE + CORREÇÃO DE COR)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. HEADER MOBILE (Estado Inicial Transparente) */
+    .main-header {
+        padding: 0 10px;
+        background-color: transparent !important;
+        height: 130px; /* Aumentei para caber a logo maior */
+        box-shadow: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* 2. LOGO (Versão Grande) */
+    .logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin-left: -5px;
+    }
+
+    .logo img {
+        height: 200px; /* Aumentado drasticamente (era 110px) */
+        width: auto;
+        padding-top: 0;
+        /* Sombra forte para ver a logo branca sobre a foto */
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9)); 
+        transition: all 0.3s ease;
+    }
+
+    /* 3. MENU HAMBÚRGUER (Branco no topo) */
+    .hamburger { 
+        display: block;
+        margin-right: 5px;
+    }
+    
+    .hamburger span { 
+        background-color: #ffffff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.9);
+        transition: all 0.3s ease;
+    }
+
+    /* 4. ESTADO "SCROLLED" OU "MENU ABERTO" */
+    .main-header.scrolled,
+    .main-header:has(.main-nav.active) {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        height: 100px; /* Altura reduzida quando branco */
+        padding: 0 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    /* === MÁGICA DA TROCA DE LOGO (CSS ONLY) === */
+    
+    /* Caso 1: Usuário rolou a página (O JS já trocou a imagem para preta, removemos filtros) */
+    .main-header.scrolled .logo img {
+        height: 100px; /* Tamanho ao rolar */
+        filter: none;
+    }
+
+    /* Caso 2: Usuário clicou no menu LÁ NO TOPO (A imagem ainda é a branca, então forçamos ela a ficar preta) */
+    .main-header:not(.scrolled):has(.main-nav.active) .logo img {
+        height: 100px;
+        filter: brightness(0); /* TRUQUE: Transforma a imagem branca em silhueta preta */
+    }
+
+    /* Hambúrguer fica preto no fundo branco */
+    .main-header.scrolled .hamburger span,
+    .main-header:has(.main-nav.active) .hamburger span {
+        background-color: var(--black-primary);
+        box-shadow: none;
+    }
+
+    /* 5. GAVETA DO MENU (Centralizada) */
+    .main-nav {
+        position: absolute;
+        top: 130px; /* Alinhado com o header inicial */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0;
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.5s ease-in-out, top 0.3s ease;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* Sobe o menu quando o header diminui */
+    .main-header.scrolled .main-nav,
+    .main-header:has(.main-nav.active) .main-nav {
+        top: 100px;
+    }
+
+    .main-nav.active {
+        clip-path: circle(150% at 100% 0);
+    }
+
+    /* Alinhamento dos Textos */
+    .main-nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        gap: 30px;
+    }
+
+    .main-nav li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-nav a {
+        color: var(--black-primary);
+        font-weight: 700;
+        font-size: 1.25rem; /* Texto um pouco maior */
+        text-shadow: none;
+        text-align: center;
+    }
+
+    .header-cta { display: none; }
+
+    /* Ajustes Gerais */
+    .hero-content h1 { font-size: 2.2rem; }
+    
+    .location-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .carousel-column, .map-column, .carousel-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-container {
+        height: 280px;
+        min-height: 280px;
+    }
+
+    .map-column { height: 280px; }
+    .map-frame iframe { pointer-events: none; }
+}
+
+/* Botão Whatsapp Flutuante */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    z-index: 9999;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
